@@ -1,24 +1,184 @@
 # README
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
 Things you may want to cover:
-
 * Ruby version
-
 * System dependencies
-
 * Configuration
-
 * Database creation
-
 * Database initialization
-
 * How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+* Deployment instruction
 * ...
+
+## user_テーブル
+|column|Type|Options|
+|------|----|-------|
+|nikname|string|null:false|
+|パスワード|string|null:false|
+|E mail|string|null:false|
+### association
+has_many:comments,dependnt: :dwestroy
+has_many:favorites,dependent: :destroy
+has_many:todo_lists
+has_many:user_evaluations_評価
+has_many:seller_items,foreigh_key:"seller_id",class_name:"items"
+has_many:buyer_items,foreigh_key:"buyer_id"class_name:"items"
+
+has_one:point
+has_one:profile,dependent: :destroy
+has_one:sns_authentication,dependent: :destroy
+has_one:sending_destination,dependent: :destroy
+has_one:credit_card,dependent: :destroy
+
+## profail_テーブル
+|column|Type|Options|
+|------|----|-------|
+fist-name | string | null:false
+family-name | string | null:false
+fist-name kana | string | null:false
+family-name kana | string | null:false
+生年月日 | 日付 | null:false
+前書き | text | null:false
+アバタ | string | 
+user | | null:false,foreign_key:true
+### association
+beongs_to:user
+
+## sns_authehtications_テーブル
+|column|Type|Options|
+|------|----|-------|
+provider | string | null:false
+uid | srring | null:false,unique:true
+tolk | text |
+user | | null:false,foreign_key:true
+### association
+belongs_to:user
+
+## send_destinations_テーブル(送り先)
+|column|Type|Options|
+|------|----|-------|
+destinations_fist-name | string | null:false
+destinations_family-name | string | null:false
+destinations_fist-name kana | sting | null:false
+destinations_family-name kana | sting | null:false
+郵便番号 | 整数（7）| null:false
+都道府県コード | 整数 | null:false
+市 | string | null:false
+マンション名 部屋番号 | string | null:false
+tel | 整数 | null:false
+user | | null:false.foreign_key:true
+### association
+derougsito_user
+宝石:jp_pefecture  で都道府県のコード 取得
+
+## credit_card_テーブル
+|column|Type|Options|
+|------|----|-------|
+card番号 | 整数 | null:false,unique:true
+有効期限 | 整数 | null:false
+セキュリティコード | 整数 | null:false
+user | |null:false,foreign_key:true
+### association
+belongs_to:user
+
+## user_evaluations_テーブル
+|column|Type|Options|
+|------|----|-------|
+レビュ | text | null:false
+user |  | null:false,foreign_key:true
+項目 |  | null:false,foreign_key:true
+評価 |  | null:false,foreign_key:true
+### association
+belongs_to_active_hash:evaluation
+belongs_to:user
+belongs_to:item
+
+## ブランド_テーブル
+|column|Type|Options|
+|------|----|-------|
+name | string| 
+### association
+has_many:item
+
+## item_img_テーブル
+url | string | null:false
+項目 | |null:false,foreign_key:true
+### association
+belongs_to:item
+
+## item_テーブル
+|column|Type|Options|
+|------|----|-------|
+name | string | null:false
+前書き | text | null:false
+価格 | 整数 | null:false
+ブランド |  | foreign_key:true
+item_状態 |  | null:false,foreign_key:true
+postage_payer(配送料) | | null:false
+都道府県コード | 整数 | null:false
+size | | null:false,foreign_key:true
+配送準備日 | | null:false,foreign_key:true
+postage_type(送料払い) |  | null:false,foreign_key:true
+item_img | | null:folse,foreign_key:true
+category | | null:folse,soreign_key:true
+trading_status(信用取引) | 列拳型 | null:false
+売り手 | | null:false,foreign_key:true
+買い手 | | foreign_key:true
+deal_closed_date(対照 閉 deta) | taim stanp |
+### association
+has_many:coments,dependent: :destroy
+has_many:favorite
+has_many:item_imgs,dependent: :destroy
+has_one:user_evaluation
+belongs_to:category
+belongs_to:actyev_hash:size
+belongs_to:actyev_hash:item_condition
+belongs_to:actyev_hash:postage_payer
+belongs_to:actyev_hash:preparation_day
+belongs_to:actyev_hash:postage_type
+belongs_to:actyev_hash:brand
+belongs_to:actyev_hash:seller,class_name:user:
+belongs_to:actyev_hash:buyer,class_name:user:
+宝石:jp_prefecture (コード取得)
+
+## favorite_テーブル
+|column|Type|Options|
+|------|----|-------|
+user |  | null:false,freign_key:true
+項目 |  | null:false,freign_key:true
+### association
+beongs_to:user
+belongs_to:item
+
+## coments_テーブル
+|column|Type|Options|
+|------|----|-------|
+coment | text | null:false
+user |  | null:false,foreign_key:true
+項目 |  | null:false,foreign_key:true
+created_at | taim stanp |null:false
+### association
+belongs_to:user
+belongs_to:item
+
+## category_テーブル
+|column|Type|Options|
+|------|----|-------|
+name | string | null:false
+属性 | string | null:false
+### association
+has_many:item
+
+
+
+
+
+
+
+
+
+
+
+
