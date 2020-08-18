@@ -72,17 +72,21 @@ belongs_to:user
 ## credit_card_テーブル
 |column|Type|Options|
 |------|----|-------|
-
+|card_number|integer|null:false,unique:true|
+|expiration_year|integer|null:false|
+|expiration_month|integer|null:false|
+|security_code|integer|null:false|
+|user_id|references|null:false,foreign_key:true|
 ### association
 belongs_to:user
 
 ## user_evaluations_テーブル
 |column|Type|Options|
 |------|----|-------|
-レビュ | text | null:false
-user |  | null:false,foreign_key:true
-項目 |  | null:false,foreign_key:true
-評価 |  | null:false,foreign_key:true
+|review|text|null:false|
+|user_id|references|null:false,foreign_key:true|
+|item_id|references|null:false,foreign_key:true|
+|evaluation_id|references|null:false,foreign_key:true|
 ### association
 belongs_to_active_hash:evaluation
 belongs_to:user
@@ -91,13 +95,13 @@ belongs_to:item
 ## ブランド_テーブル
 |column|Type|Options|
 |------|----|-------|
-name | string| 
+|name|string| 
 ### association
 has_many:items
 
 ## item_img_テーブル
-url | string | null:false
-項目 | |null:false,foreign_key:true
+|url|string|null:false|
+|item_id|references|null:false,foreign_key:true|
 ### association
 belongs_to:item
 
@@ -106,19 +110,19 @@ belongs_to:item
 |------|----|-------|
 name | string | null:false
 introduction | text | null:false
-price | 整数 | null:false
-brand_id |  | foreign_key:true
-item_condition_id |  | null:false,foreign_key:true
-postage_payer_id (配送料) | | null:false
-prefecture_code | 整数 | null:false
+price | integer | null:false
+brand_id | references | foreign_key:true
+item_condition_id | references | null:false,foreign_key:true
+postage_payer_id (配送料) | references | null:false
+prefecture_code | integer | null:false
 size_id | | null:false,foreign_key:true
-preparation_day_id | | null:false,foreign_key:true
-postage_type(送料払い) |  | null:false,foreign_key:true
-item_img_id | | null:folse,foreign_key:true
-category_id | | null:folse,soreign_key:true
-trading_status(信用取引) | 列拳型 | null:false
-seller_id | | null:false,foreign_key:true
-buyer_id | | foreign_key:true
+preparation_day_id | references | null:false,foreign_key:true
+postage_type(送料払い) | references | null:false,foreign_key:true
+item_img_id | references | null:folse,foreign_key:true
+category_id | references | null:folse,soreign_key:true
+trading_status(信用取引) | enum | null:false
+seller_id | references | null:false,foreign_key:true
+buyer_id | references | foreign_key:true
 deal_closed_date(対照 閉 deta) | taim stanp |
 ### association
 has_many:coments,dependent: :destroy
@@ -159,7 +163,7 @@ belongs_to:item
 ## category_テーブル
 |column|Type|Options|
 |------|----|-------|
-name | string | null:false
-属性 | string | null:false
+|name|string|null:false|
+|属性|string|null:false|
 ### association
 has_many:items
