@@ -47,7 +47,7 @@ has_one:credit_card,dependent: :destroy
 |------|----|-------|
 provider | string | null:false
 uid | srring | null:false,unique:true
-tolk | text |
+token | text |
 user | | null:false,foreign_key:true
 ### association
 belongs_to:user
@@ -66,7 +66,7 @@ destinations_family-name kana | sting | null:false
 tel | 整数 | null:false
 user | | null:false.foreign_key:true
 ### association
-delongs_to:user
+belongs_to:user
 宝石:jp_pefecture  で都道府県のコード 取得
 
 ## credit_card_テーブル
@@ -163,16 +163,3 @@ name | string | null:false
 属性 | string | null:false
 ### association
 has_many:items
-
-
-
-
-
-
-
-
-
-
-
-
-
