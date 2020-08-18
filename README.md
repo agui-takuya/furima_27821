@@ -95,7 +95,7 @@ belongs_to:item
 ## ブランド_テーブル
 |column|Type|Options|
 |------|----|-------|
-|name|string| 
+|name|string|null:false|
 ### association
 has_many:items
 
@@ -108,22 +108,22 @@ belongs_to:item
 ## item_テーブル
 |column|Type|Options|
 |------|----|-------|
-name | string | null:false
-introduction | text | null:false
-price | integer | null:false
-brand_id | references | foreign_key:true
-item_condition_id | references | null:false,foreign_key:true
-postage_payer_id (配送料) | references | null:false
-prefecture_code | integer | null:false
-size_id | | null:false,foreign_key:true
-preparation_day_id | references | null:false,foreign_key:true
-postage_type(送料払い) | references | null:false,foreign_key:true
-item_img_id | references | null:folse,foreign_key:true
-category_id | references | null:folse,soreign_key:true
-trading_status(信用取引) | enum | null:false
-seller_id | references | null:false,foreign_key:true
-buyer_id | references | foreign_key:true
-deal_closed_date(対照 閉 deta) | taim stanp |
+|name|string|null:false|
+|introduction|text|null:false|
+|price|integer|null:false|
+|brand_id|references|foreign_key:true|
+|item_condition_id|references|null:false,foreign_key:true|
+|postage_payer_id(配送料)|references|null:false|
+|prefecture_code|integer|null:false|
+|size_id|references|null:false,foreign_key:true|
+|preparation_day_id|references|null:false,foreign_key:true|
+|postage_type(送料払い)|references|null:false,foreign_key:true|
+|item_img_id|references|null:folse,foreign_key:true|
+|category_id|references|null:folse,soreign_key:true|
+|trading_status(信用取引)|enum|null:false|
+|seller_id|references|null:false,foreign_key:true|
+|buyer_id|references|foreign_key:true|
+|deal_closed_date(対照 閉 deta)|taim stanp|
 ### association
 has_many:coments,dependent: :destroy
 has_many:favorites
@@ -143,8 +143,8 @@ belongs_to:actyev_hash:buyer,class_name:user:
 ## favorite_テーブル
 |column|Type|Options|
 |------|----|-------|
-user |  | null:false,freign_key:true
-項目 |  | null:false,freign_key:true
+|user_id|references|null:false,freign_key:true|
+|item_id|references|null:false,freign_key:true|
 ### association
 belongs_to:user
 belongs_to:item
@@ -152,18 +152,18 @@ belongs_to:item
 ## coments_テーブル
 |column|Type|Options|
 |------|----|-------|
-coment | text | null:false
-user |  | null:false,foreign_key:true
-項目 |  | null:false,foreign_key:true
-created_at | taim stanp |null:false
+|coment|text|null:false|
+|user_id|references|null:false,foreign_key:true|
+|comment|text|null:false,foreign_key:true|
+|created_at|timesstamp|null:false|
 ### association
 belongs_to:user
 belongs_to:item
 
-## category_テーブル
+## Categories_テーブル
 |column|Type|Options|
 |------|----|-------|
 |name|string|null:false|
-|属性|string|null:false|
+|ancestry|string|null:false|
 ### association
 has_many:items
