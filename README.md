@@ -15,56 +15,56 @@ Things you may want to cover:
 ## user_テーブル
 |column|Type|Options|
 |------|----|-------|
-|nikname|string|null:false|
-|パスワード|string|null:false|
-|E mail|string|null:false|
-|fist-name | string | null:false|
-|family-name | string | null:false|
-|fist-name kana | string | null:false|
-|family-name kana | string | null:false|
-|生年月日 | 日付 | null:false|
-|前書き | text | null:false|
-|アバタ | string | 
-|user | | null:false,foreign_key:true|
+|nickname|string|null:false|
+|password|string|null:false|
+|email|string|null:false|
+|fist-name|string|null:false|
+|family-name|string|null:false|
+|fist-name_kana|string|null:false|
+|family-name_kana|string|null:false|
+|birth_year|date|null:false|
+|birth_month|date|null:false|
+|birth_day|date|null:false|
+|introduction|text|
+|avartar|string|
+|user_id|references|null:false,foreign_key:true|
 ### association
 has_many:comments,dependnt: :dwestroy
 has_many:favorites,dependent: :destroy
 has_many:todo_lists
-has_many:user_evaluations_評価
+has_many:user_evaluations (評価)
 has_many:seller_items,foreigh_key:"seller_id",class_name:"items"
 has_many:buyer_items,foreigh_key:"buyer_id"class_name:"items"
-
 has_one:point
 has_one:profile,dependent: :destroy
 has_one:sns_authentication,dependent: :destroy
 has_one:sending_destination,dependent: :destroy
 has_one:credit_card,dependent: :destroy
 
-
-
 ## sns_authehtications_テーブル
 |column|Type|Options|
 |------|----|-------|
-provider | string | null:false
-uid | srring | null:false,unique:true
-token | text |
-user | | null:false,foreign_key:true
+|provider|string|null:false|
+|uid|srring|null:false,unique:true|
+|token|text|
+|user_id|references|null:false,foreign_key:true|
 ### association
 belongs_to:user
 
 ## send_destinations_テーブル(送り先)
 |column|Type|Options|
 |------|----|-------|
-destinations_fist-name | string | null:false
-destinations_family-name | string | null:false
-destinations_fist-name kana | sting | null:false
-destinations_family-name kana | sting | null:false
-郵便番号 | 整数（7）| null:false
-都道府県コード | 整数 | null:false
-市 | string | null:false
-マンション名 部屋番号 | string | null:false
-tel | 整数 | null:false
-user | | null:false.foreign_key:true
+|destinations_fist-name|string|null:false|
+|destinations_family-name|string|null:false|
+|destinations_fist-name_kana|sting|null:false|
+|destinations_family-name_kana|sting|null:false|
+|post_code|integer(7)|null:false|
+|prefecture_code|intger|null:false|
+|city|string|null:false|
+|house_number|string|null:false|
+|buliding_name(建物)|string|
+|tel|integer|null:false|
+|user_id|reefereces|null:false.foreign_key:true|
 ### association
 belongs_to:user
 宝石:jp_pefecture  で都道府県のコード 取得
