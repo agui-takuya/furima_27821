@@ -66,7 +66,7 @@ destinations_family-name kana | sting | null:false
 tel | 整数 | null:false
 user | | null:false.foreign_key:true
 ### association
-delongs_user
+delongs_to:user
 宝石:jp_pefecture  で都道府県のコード 取得
 
 ## credit_card_テーブル
@@ -93,7 +93,7 @@ belongs_to:item
 |------|----|-------|
 name | string| 
 ### association
-has_many:item
+has_many:items
 
 ## item_img_テーブル
 url | string | null:false
@@ -122,9 +122,9 @@ trading_status(信用取引) | 列拳型 | null:false
 deal_closed_date(対照 閉 deta) | taim stanp |
 ### association
 has_many:coments,dependent: :destroy
-has_many:favorite
-has_many:item_imgs,dependent: :destroy
-has_one:user_evaluation
+has_many:favorites
+has_many:items_imgs,dependent: :destroy
+has_one:users_evaluation
 belongs_to:category
 belongs_to:actyev_hash:size
 belongs_to:actyev_hash:item_condition
