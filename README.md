@@ -105,20 +105,20 @@ belongs_to:item
 |column|Type|Options|
 |------|----|-------|
 name | string | null:false
-前書き | text | null:false
-価格 | 整数 | null:false
-ブランド |  | foreign_key:true
-item_状態 |  | null:false,foreign_key:true
-postage_payer(配送料) | | null:false
-都道府県コード | 整数 | null:false
-size | | null:false,foreign_key:true
-配送準備日 | | null:false,foreign_key:true
+introduction | text | null:false
+price | 整数 | null:false
+brand_id |  | foreign_key:true
+item_condition_id |  | null:false,foreign_key:true
+postage_payer_id (配送料) | | null:false
+prefecture_code | 整数 | null:false
+size_id | | null:false,foreign_key:true
+preparation_day_id | | null:false,foreign_key:true
 postage_type(送料払い) |  | null:false,foreign_key:true
-item_img | | null:folse,foreign_key:true
-category | | null:folse,soreign_key:true
+item_img_id | | null:folse,foreign_key:true
+category_id | | null:folse,soreign_key:true
 trading_status(信用取引) | 列拳型 | null:false
-売り手 | | null:false,foreign_key:true
-買い手 | | foreign_key:true
+seller_id | | null:false,foreign_key:true
+buyer_id | | foreign_key:true
 deal_closed_date(対照 閉 deta) | taim stanp |
 ### association
 has_many:coments,dependent: :destroy
