@@ -32,7 +32,7 @@ has_one:sns_authentication,dependent: :destroy
 has_one:sending_destination,dependent: :destroy
 has_one:credit_card,dependent: :destroy
 
-## profail_テーブル
+## profile_テーブル
 |column|Type|Options|
 |------|----|-------|
 fist-name | string | null:false
@@ -76,10 +76,7 @@ derougsito_user
 ## credit_card_テーブル
 |column|Type|Options|
 |------|----|-------|
-card番号 | 整数 | null:false,unique:true
-有効期限 | 整数 | null:false
-セキュリティコード | 整数 | null:false
-user | |null:false,foreign_key:true
+
 ### association
 belongs_to:user
 
