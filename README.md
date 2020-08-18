@@ -18,6 +18,14 @@ Things you may want to cover:
 |nikname|string|null:false|
 |パスワード|string|null:false|
 |E mail|string|null:false|
+|fist-name | string | null:false|
+|family-name | string | null:false|
+|fist-name kana | string | null:false|
+|family-name kana | string | null:false|
+|生年月日 | 日付 | null:false|
+|前書き | text | null:false|
+|アバタ | string | 
+|user | | null:false,foreign_key:true|
 ### association
 has_many:comments,dependnt: :dwestroy
 has_many:favorites,dependent: :destroy
@@ -32,19 +40,7 @@ has_one:sns_authentication,dependent: :destroy
 has_one:sending_destination,dependent: :destroy
 has_one:credit_card,dependent: :destroy
 
-## profile_テーブル
-|column|Type|Options|
-|------|----|-------|
-fist-name | string | null:false
-family-name | string | null:false
-fist-name kana | string | null:false
-family-name kana | string | null:false
-生年月日 | 日付 | null:false
-前書き | text | null:false
-アバタ | string | 
-user | | null:false,foreign_key:true
-### association
-beongs_to:user
+
 
 ## sns_authehtications_テーブル
 |column|Type|Options|
@@ -70,7 +66,7 @@ destinations_family-name kana | sting | null:false
 tel | 整数 | null:false
 user | | null:false.foreign_key:true
 ### association
-derougsito_user
+delongs_user
 宝石:jp_pefecture  で都道府県のコード 取得
 
 ## credit_card_テーブル
@@ -146,7 +142,7 @@ belongs_to:actyev_hash:buyer,class_name:user:
 user |  | null:false,freign_key:true
 項目 |  | null:false,freign_key:true
 ### association
-beongs_to:user
+belongs_to:user
 belongs_to:item
 
 ## coments_テーブル
@@ -166,7 +162,7 @@ belongs_to:item
 name | string | null:false
 属性 | string | null:false
 ### association
-has_many:item
+has_many:items
 
 
 
