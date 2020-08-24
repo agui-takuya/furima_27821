@@ -7,9 +7,9 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  
+
   with_options presence: true do
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+    validates :password, format: { with: VALID_PASSWORD_REGEX }
     validates :nickname,uniqueness: true
     validates :fist_name, format: { with: /\A[ぁ-ん-龥]/, message: "is invalid. Input full-width characters."}
     validates :family_name, format: { with: /\A[ぁ-ん-龥]/, message: "is invalid. Input full-width characters."}
